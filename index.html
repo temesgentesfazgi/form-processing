@@ -65,6 +65,22 @@
       </div>
 
       <div>
+        <label for="State">State</label><br>
+        <select id="State" name="State" required>
+          <option value="">Please enter state</option>
+          <option value="Ak">Alaska</option>
+          <option value="CA">california</option>
+          <option value="OR">Oregon</option>
+          <option value="WA">Washington</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="Note">Note</label><br>
+        <textarea id="Note" name="Note" placeholder="Place any special instruciton here" rows="4" cols="42"></textarea>
+      </div>
+
+      <div>
         <input type="submit">
       </div>
     </form>
@@ -88,6 +104,13 @@
 
       urlParams.forEach(function(value,key){
 
+        switch(key){
+          case "First_Name":
+          case "Last_Name":
+            value = titleCase(value);
+          break;
+        }
+
         key = key.split("_").join(" ");
         myOutput += `<p>${key}: ${value}</p>`;
       });
@@ -95,6 +118,17 @@
       myOutput += `</div>`;
       document.querySelector("#output").innerHTML = myOutput;
     }
+
+      function titleCase(str){
+      str = str.split(" ");
+      for(let x=0;x<str.length;x++){
+          str[x] = str[x].charAt(0).toUpperCase() + str[x].slice(1).toLowerCase();
+      }
+      
+      str = str.join(" ");
+      return str;
+   }
+
   </script>  
  </body>
 </html>
